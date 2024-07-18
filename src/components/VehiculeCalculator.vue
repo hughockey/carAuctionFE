@@ -59,9 +59,11 @@ const sendVehicleInfo = async () => {
     <h1 class="text-5xl mb-5 font-bold">Calculate vehicle bid</h1>
     <form @submit.prevent="sendVehicleInfo" class="mb-7">
       <div class="flex flex-col mb-5">
-        <span class="text-red-500" v-if="errors.vehicleBasePrice && !isVehicleBasePriceValid">{{
-          errors.vehicleBasePrice
-        }}</span>
+        <span
+          class="text-red-500 error"
+          v-if="errors.vehicleBasePrice && !isVehicleBasePriceValid"
+          >{{ errors.vehicleBasePrice }}</span
+        >
         <label for="basePrice" class="text-sm">Vehicle base price</label>
         <input
           required
@@ -92,13 +94,15 @@ const sendVehicleInfo = async () => {
 
     <h3 class="font-bold text-2xl mb-5">Calculation result</h3>
     <div class="flex flex-col">
-      <span>Basic buyer fees: {{ basicBuyerFee }}</span>
-      <span>Seller fees: {{ sellerSpecialFee }}</span>
-      <span>Association fees: {{ associationFee }}</span>
-      <span>Storage fees: {{ storageFee }}</span>
+      <span data-testid="basicBuyerFee">Basic buyer fees: {{ basicBuyerFee }}</span>
+      <span data-testid="sellerSpecialFee">Seller fees: {{ sellerSpecialFee }}</span>
+      <span data-testid="associationFee">Association fees: {{ associationFee }}</span>
+      <span data-testid="storageFee">Storage fees: {{ storageFee }}</span>
     </div>
     <div>
-      <span class="font-bold">Total vehicule cost: {{ totalVehiclePrice }} </span>
+      <span class="font-bold" data-testid="totalVehiclePrice"
+        >Total vehicule cost: {{ totalVehiclePrice }}
+      </span>
     </div>
   </section>
 </template>
