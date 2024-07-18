@@ -28,10 +28,9 @@ const sendVehicleInfo = async () => {
   validateField('vehicleBasePrice')
   if (Object.keys(errors.value).length === 0) {
     try {
-      // NOTE: I don't usually use fetch, I use axios with a state manager like Pinia, Vuex or tanStackQuery. I'm using fetch right now only to remove all unnecessary code and libraries for only one request.
-      // NOTE2: Obviously I would usually use env variables for the base url but it simplifies things for now
+      // NOTE: I don't usually use fetch, I use axios with a state manager like Pinia, Vuex or tanStackQuery to separate request handling in an other file. I'm using fetch right now only to remove all unnecessary code and libraries for only one request.
       const response = await fetch(
-        `http://localhost:5292/api/auction/getTotalVehiclePrice?basePrice=${form.vehicleBasePrice.value}&vehicleType=${form.vehicleType.value}`,
+        `${import.meta.env.VITE_API_URL}/auction/getTotalVehiclePrice?basePrice=${form.vehicleBasePrice.value}&vehicleType=${form.vehicleType.value}`,
         {
           method: 'GET',
           headers: {
